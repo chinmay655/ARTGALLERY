@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+/* ===== Global Reset ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif;}
+body { background-color:#0d0d0d; color:#eaeaea; line-height:1.6; min-height:100vh; display:flex; flex-direction:column;}
+
+/* ===== Header & Navbar ===== */
+header { background:#111; color:#fff; padding:15px 25px; display:flex; align-items:center; justify-content:space-between; position:relative;}
+header h1 { font-size:1.6rem; letter-spacing:1px;}
+nav { display:flex; gap:20px;}
+nav a { text-decoration:none; color:#ccc; font-weight:500; transition:color 0.3s;}
+nav a:hover, nav a.active { color:#00aaff;}
+
+/* ===== Mobile Menu ===== */
+.menu-btn { display:none; font-size:1.5rem; color:#fff; background:none; border:none; cursor:pointer;}
+@media(max-width:768px){ nav{ display:none; flex-direction:column; background:#111; position:absolute; top:60px; right:0; width:200px; border-left:2px solid #00aaff; border-bottom:2px solid #00aaff;} nav.active{display:flex;} .menu-btn{display:block;}}
+
+/* ===== Gallery Section ===== */
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:40px 20px;}
+.art-card { background:#1a1a1a; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.5); overflow:hidden; text-align:center; cursor:pointer; transition: transform 0.4s, box-shadow 0.4s;}
+.art-card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 8px 30px rgba(0,170,255,0.4);}
+.art-card img { width:100%; height:260px; object-fit:cover; transition: transform 0.5s ease;}
+.art-card:hover img { transform:scale(1.05);}
+.art-card h3 { padding:12px 0; color:#00aaff;}
+
+/* ===== Lightbox ===== */
+.lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:1000;}
+.lightbox img { max-width:90%; max-height:85%; border-radius:10px; animation:zoomIn 0.4s ease;}
+@keyframes zoomIn { from{transform:scale(0.8);opacity:0;} to{transform:scale(1);opacity:1;}}
+
+/* ===== Footer ===== */
+footer { background:#111; color:#ccc; text-align:center; padding:15px 10px; font-size:0.9rem; border-top:1px solid #222;}
+footer a { color:#00aaff; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+.artist-name { color:#00aaff;}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){ header h1{font-size:1.3rem;} .art-card img{height:200px;} }
+@media(max-width:500px){ header h1{font-size:1.2rem;} }
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Art Gallery</title>
+   <!--<link rel="stylesheet" href="css/style.css">--> 
+</head>
+<body>
+
+    <header>
+        <h1>🎨 My Art Gallery</h1>
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <section class="gallery">
+        <div class="art-card" onclick="openLightbox('images/art1.jpg')">
+            <img src="images/sm1.jpg" alt="Painting 1">
+            <h3>Vithumauli</h3>
+        </div>
+
+        <div class="art-card" onclick="openLightbox('images/art2.jpg')">
+            <img src="images/sm2.jpg" alt="Painting 2">
+            <h3>Lord Krishna</h3>
+        </div>
+
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm3.jpg" alt="Painting 3">
+            <h3>Kanha</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm4.jpg" alt="Painting 3">
+            <h3>Maharaj</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm5.jpg" alt="Painting 3">
+            <h3>Khana</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm6.jpg" alt="Painting 3">
+            <h3>Kohali</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm7.jpg" alt="Painting 3">
+            <h3>Lord Shivt</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm8.jpg" alt="Painting 3">
+            <h3>..</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm9.jpg" alt="Painting 3">
+            <h3>Sai Baba</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm10.jpg" alt="Painting 3">
+            <h3>Sckech</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm11.jpg" alt="Painting 3">
+            <h3>..</h3>
+        </div>
+        <!--<div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm12.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm13.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm14.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm15.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm16.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm17.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm18.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm19.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm20.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm21.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm22.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>
+        <div class="art-card" onclick="openLightbox('images/art3.jpg')">
+            <img src="images/sm23.jpg" alt="Painting 3">
+            <h3>Moonlit Forest</h3>
+        </div>-->
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="">
+    </div>
+
+    <footer>
+        <p>© 2025 <span class="artist-name">Shreyash Murkar</span> Art Gallery | Developed by 
+        <a href="https://chinmay655.github.io/chinmayghogale.github.io/" class="dev-link">Chinmay Ghogale</a></p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
